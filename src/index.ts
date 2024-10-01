@@ -9,44 +9,34 @@ enum Color {
   RESET = '\x1b[0m' // Reset to default color
 }
 
-const info = (...message: any[]) => {
+const info = (...message: unknown[]) => {
   const messages = '❔' + message.map((msg) => `${Color.BLACK}${inspect(msg, false, null)}${Color.BLACK}`);
   print(messages);
 };
 
-const warn = (...message: any[]) => {
+const warn = (...message: unknown[]) => {
   const messages = '⚠️' + message.map((msg) => `${Color.YELLOW}${inspect(msg, false, null)}${Color.YELLOW}`);
   print(messages);
 };
 
-const err = (...message: any[]) => {
+const err = (...message: unknown[]) => {
   const messages = '❌' + message.map((msg) => `${Color.RED}${inspect(msg, false, null)}${Color.RED}`);
   print(messages);
 };
 
-const ok = (...message: any[]) => {
+const ok = (...message: unknown[]) => {
   const messages = '✅' + message.map((msg) => `${Color.GREEN}${inspect(msg, false, null)}${Color.GREEN}`);
   print(messages);
 };
 
-const log = (...message: any[]) => {
+const log = (...message: unknown[]) => {
   const messages =
     '' + message.map((msg) => `${Color.WHITE}${inspect(msg, false, null, true /* enable colors */)}${Color.WHITE}`);
   print(messages);
 };
 
-const print = (...message: any[]) => {
-  if (process.env.NODE_ENV === 'development') {
-    console.log(message.join(' '));
-  }
+const print = (...message: unknown[]) => {
+  console.log(message.join(' '));
 };
 
-const logger = {
-  info,
-  warn,
-  err,
-  ok,
-  log
-};
-
-export default logger;
+export { info, warn, err, ok, log };

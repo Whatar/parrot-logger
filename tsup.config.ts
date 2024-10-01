@@ -1,10 +1,10 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/**/*'], // Main source files
-  format: ['esm', 'cjs'], // Compile to both ESM and CommonJS
-  outDir: 'dist', // Output production code to `dist`
-  dts: true, // Generate TypeScript declarations for production code
-  sourcemap: true, // Enable sourcemaps
-  clean: true // Clean the `dist` directory before building
+  entry: ['src/index.ts'], // Entry point of your application
+  format: ['cjs', 'esm'], // Bundle both CommonJS and ESModules
+  dts: true, // Generate TypeScript declaration files
+  sourcemap: true, // Generate source maps
+  clean: true, // Clean the output folder before each build
+  minify: true
 });

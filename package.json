@@ -1,21 +1,36 @@
 {
   "name": "@whatar/parrot-logger",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A logger which unpacks and colors the output.",
-  "type": "module",
-  "main": "dist/logger.js",
+  "type": "commonjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/logger.js",
-      "default": "./dist/logger.cjs"
+      "import": {
+        "types": "./index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./index.d.ts",
+        "default": "./dist/index.js"
+      }
     },
     "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "package.json"
+  ],
+  "engines": {
+    "node": ">=16.13.0"
   },
   "scripts": {
     "test": "npm run build && mocha dist/test",
     "build": "tsup",
     "prepublishOnly": "npm run build",
-    "dev": "nodemon"
+    "dev": "tsup --watch --silent --onSuccess 'node dist/index.js'"
   },
   "repository": {
     "type": "git",
@@ -35,7 +50,7 @@
   },
   "homepage": "https://github.com/whatar/parrot-logger#readme",
   "dependencies": {
-    "ts-node": "^10.2.1",
+    "ts-node": "^10.9.2",
     "util": "^0.12.4"
   },
   "devDependencies": {
@@ -50,18 +65,5 @@
     "sinon": "^19.0.2",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
-  },
-  "tsup": {
-    "dts": true,
-    "bundle": false,
-    "treeshake": true,
-    "target": "node18",
-    "format": [
-      "esm",
-      "cjs"
-    ],
-    "entry": [
-      "src/**/*.ts"
-    ]
   }
 }
