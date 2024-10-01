@@ -4,7 +4,9 @@
   "description": "A logger which unpacks and colors the output.",
   "main": "logger.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha dist/test",
+    "build": "tsc",
+    "init": "tsc --init"
   },
   "repository": {
     "type": "git",
@@ -24,10 +26,17 @@
   },
   "homepage": "https://github.com/whatar/parrot-logger#readme",
   "dependencies": {
-    "typescript": "^4.1.2",
+    "ts-node": "^10.2.1",
     "util": "^0.12.4"
   },
   "devDependencies": {
-    "@types/node": "^22.7.4"
+    "@types/chai": "^5.0.0",
+    "@types/mocha": "^10.0.8",
+    "@types/node": "^22.7.4",
+    "@types/sinon": "^17.0.3",
+    "chai": "^5.1.1",
+    "mocha": "^10.7.3",
+    "sinon": "^19.0.2",
+    "typescript": "^5.6.2"
   }
 }
