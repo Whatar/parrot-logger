@@ -21,7 +21,7 @@ npm i lorikeet-logger
 ## Usage
 
 ### Colors
-
+```javascript
 const logger = require("lorikeet-logger")
 
 logger.info("Hello world")
@@ -29,9 +29,11 @@ logger.warn("Hello world")
 logger.err("Hello world")
 logger.ok("Hello world")
 logger.log("Hello world")
+```
 
 ### Unpacking
 
+```javascript
 const logger = require("lorikeet-logger")
 
 // Example structure to unpack
@@ -53,6 +55,7 @@ aggregation = {
 }
 
 logger.log(aggregation)
+```
 
 ## Contributing
 
