@@ -1,6 +1,6 @@
 {
   "name": "@whatar/parrot-logger",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A logger which unpacks and colors the output.",
   "type": "module",
   "main": "dist/logger.js",
