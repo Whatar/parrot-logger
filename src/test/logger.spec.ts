@@ -1,6 +1,6 @@
 import { before } from 'node:test';
 import logger from '../logger';
-const assert = require('assert');
+import assert from 'assert';
 import { spy } from 'sinon';
 
 describe('Logger Tests', () => {
