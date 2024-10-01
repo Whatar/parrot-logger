@@ -1,8 +1,8 @@
 {
   "name": "@whatar/parrot-logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A logger which unpacks and colors the output.",
-  "main": "logger.ts",
+  "main": "src/logger.ts",
   "scripts": {
     "test": "mocha dist/test",
     "build": "tsc",
