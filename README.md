@@ -26,7 +26,7 @@ By default, logging is suppressed when `NODE_ENV` is set to **production**. Howe
 ```javascript
 const logger = require("lorikeet-logger")
 // or
-import * as logger from "@lorikeet-logger";
+import * as logger from "lorikeet-logger";
 
 logger.info("Hello world")
 logger.warn("Hello world")
@@ -40,7 +40,7 @@ logger.log("Hello world")
 ```javascript
 const logger = require("lorikeet-logger")
 // or
-import * as logger from "@lorikeet-logger";
+import * as logger from "lorikeet-logger";
 
 // Example structure to unpack
 aggregation = {
