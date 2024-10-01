@@ -2,14 +2,13 @@
   "name": "@whatar/parrot-logger",
   "version": "1.0.6",
   "description": "A logger which unpacks and colors the output.",
-  "main": "src/logger.cjs",
-  "module": "src/logger.mjs",
+  "main": "dist/logger.cjs",
+  "module": "dist/logger.mjs",
   "type": "commonjs",
   "exports": {
     ".": {
       "require": "./dist/logger.js",
-      "import": "./dist/logger.mjs",
-      "types": "./dist/logger.d.ts"
+      "import": "./dist/logger.mjs"
     }
   },
   "scripts": {
