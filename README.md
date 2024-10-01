@@ -15,9 +15,9 @@ Additionally, you can color your output, if you need to log important errors or 
 lorikeet-logger only logs in development environments, to keep your production logs clean.
 
 ## Installation
-
+```bash
 npm i lorikeet-logger
-
+```
 ## Usage
 
 ### Colors
