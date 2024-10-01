@@ -2,10 +2,21 @@
   "name": "@whatar/parrot-logger",
   "version": "1.0.5",
   "description": "A logger which unpacks and colors the output.",
-  "main": "dist/logger.js",
+  "main": "src/logger.cjs",
+  "module": "src/logger.mjs",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "require": "./dist/logger.js",
+      "import": "./dist/logger.mjs",
+      "types": "./dist/logger.d.ts"
+    }
+  },
   "scripts": {
-    "test": "mocha dist/test",
-    "build": "tsc",
+    "test": "rm -rf dist-test && tsc -p ./tsconfig.spec.json && mocha dist-test/test",
+    "start:cjs": "node dist/cjs/parrot.js",
+    "start:mjs": "node dist/mjs/parrot.js",
+    "build": "rm -rf dist && tsup src/logger.ts --format cjs,esm --dts --clean",
     "dev": "nodemon"
   },
   "repository": {
@@ -39,6 +50,7 @@
     "nodemon": "^3.1.7",
     "prettier": "^3.3.3",
     "sinon": "^19.0.2",
+    "tsup": "^8.3.0",
     "typescript": "^5.6.2"
   }
 }
