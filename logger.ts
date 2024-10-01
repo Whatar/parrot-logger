@@ -1,4 +1,4 @@
-import util from "util";
+const util = require("util");
 
 enum Color {
     WHITE = "\x1b[37m", // White for general information

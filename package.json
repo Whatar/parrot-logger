@@ -1,5 +1,5 @@
 {
-  "name": "parrot-logger",
+  "name": "@whatar/parrot-logger",
   "version": "1.0.0",
   "description": "A logger which unpacks and colors the output.",
   "main": "logger.ts",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/whatar/parrot-logger.git"
+    "url": "git+https://github.com/whatar/parrot-logger.git"
   },
   "keywords": [
     "logger",
