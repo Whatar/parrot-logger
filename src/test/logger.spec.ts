@@ -1,6 +1,5 @@
-import { before } from 'node:test';
 import logger from '../logger';
-import assert from 'assert';
+import { assert } from 'chai';
 import { spy } from 'sinon';
 
 describe('Logger Tests', () => {
