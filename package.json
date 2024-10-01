@@ -6,8 +6,8 @@
   "main": "dist/logger.js",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "default": "./dist/index.cjs"
+      "import": "./dist/logger.js",
+      "default": "./dist/logger.cjs"
     },
     "./package.json": "./package.json"
   },
