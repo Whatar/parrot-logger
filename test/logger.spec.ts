@@ -1,4 +1,4 @@
-import logger from '../logger';
+import * as logger from '../src/index';
 import { assert } from 'chai';
 import { spy } from 'sinon';
 

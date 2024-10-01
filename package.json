@@ -27,8 +27,9 @@
     "node": ">=16.13.0"
   },
   "scripts": {
-    "test": "npm run build && mocha dist/test",
     "build": "tsup",
+    "build:test": "tsup --config tsup.config.spec.ts",
+    "test": "npm run build:test && echo 'CJS:' && mocha dist/test/cjs/test && echo 'ESM:' && mocha dist/test/esm/test",
     "prepublishOnly": "npm run build",
     "dev": "tsup --watch --silent --onSuccess 'node dist/index.js'"
   },
