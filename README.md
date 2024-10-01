@@ -1,7 +1,7 @@
 # lorikeet-logger
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/whatar/parrot-logger/test.yml)
-![npm Version](https://img.shields.io/npm/v/parrot-logger)
+![npm Version](https://npm.im/@whatar/parrot-logger)
 ![License](https://img.shields.io/npm/l/parrot-logger)
 
 ## Description
