@@ -66,12 +66,4 @@ const print = (...message: any[]) => {
     }
 };
 
-const logger = {
-    info,
-    warn,
-    err,
-    ok,
-    log,
-};
-
-export default logger;
+export { info, warn, err, ok, log };
