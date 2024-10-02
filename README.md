@@ -1,8 +1,8 @@
 # lorikeet-logger
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/whatar/lorikeet-logger/test.yml)
-![npm Version](https://img.shields.io/npm/v/@whatar/lorikeet-logger)
-![License](https://img.shields.io/npm/l/@whatar/lorikeet-logger)
+![npm Version](https://img.shields.io/npm/v/lorikeet-logger)
+![License](https://img.shields.io/npm/l/lorikeet-logger)
 
 ## Description
 
