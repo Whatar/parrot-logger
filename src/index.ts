@@ -1,8 +1,6 @@
 import { inspect } from 'util';
 
-const hideLog =
-  (process.env.NODE_ENV?.toLowerCase() === 'production' || process.env.NODE_ENV?.toLowerCase() === 'prod') &&
-  process.env.LORIKEET_LOGGER_HIDE_LOG_ON_PROD?.toLowerCase() === 'true';
+let hideLog = false;
 
 enum Color {
   WHITE = '\x1b[37m', // White for general information
@@ -47,4 +45,15 @@ const print = (...message: unknown[]) => {
   console.log(message.join(' ') + Color.RESET);
 };
 
-export { info, warn, err, ok, log };
+/** Refresh the environment variables inside the logger */
+const refreshEnv = () => {
+  hideLog = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod';
+
+  if (process.env.LORIKEET_LOGGER_NOT_HIDE_LOG === 'true') {
+    hideLog = false;
+  }
+};
+
+refreshEnv();
+
+export { info, warn, err, ok, log, refreshEnv };

@@ -20,7 +20,7 @@ npm i lorikeet-logger
 ```
 ## Usage
 
-By default, logging is suppressed when `NODE_ENV` is set to **production**. However, you can override this behavior by setting the environment variable `LORIKEET_LOGGER_HIDE_LOG_ON_PROD` to 'false'. This will enable logging even in a production environment.
+By default, logging is suppressed when `NODE_ENV` is set to **production**. However, you can override this behavior by setting the environment variable `LORIKEET_LOGGER_NOT_HIDE_LOG` to 'true'. This will enable logging even in a production environment.
 
 ### Colors
 ```javascript

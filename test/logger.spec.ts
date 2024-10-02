@@ -76,4 +76,22 @@ describe('Logger Tests', () => {
     assert(consoleSpy.calledOnce);
     assert(consoleSpy.calledWithMatch(/.*Message 1.*Message 2/));
   });
+
+  it('should not log info message in production', () => {
+    process.env.NODE_ENV = 'production';
+
+    logger.refreshEnv();
+    logger.info('This is an info message');
+    assert(consoleSpy.notCalled);
+  });
+
+  it('should log warn message in production with custom env', () => {
+    process.env.NODE_ENV = 'production';
+    process.env.LORIKEET_LOGGER_NOT_HIDE_LOG = 'true';
+
+    logger.refreshEnv();
+    logger.warn('This is a warning message');
+    assert(consoleSpy.calledOnce);
+    assert(consoleSpy.calledWithMatch(/⚠️.*This is a warning message/));
+  });
 });
