@@ -1,6 +1,4 @@
-import { inspect } from 'util';
-
-let hideLog = false;
+import { convertToString } from './utils/string.utils';
 
 enum Color {
   WHITE = '\x1b[37m', // White for general information
@@ -11,55 +9,75 @@ enum Color {
   RESET = '\x1b[0m' // Reset to default color
 }
 
+type Options = {
+  hideLog: boolean; // Whether to hide logs
+  emoji: boolean; // Whether to include emojis in logs
+  separator: string; // Separator between messages
+};
+
+// Default options
+let loadedOptions = {
+  hideLog: false,
+  emoji: true,
+  separator: ' '
+} as Options;
+
+/** Configure the logger with the given options */
+const configure = (options: Options): Options => {
+  loadedOptions.emoji = options.emoji === undefined ? loadedOptions.emoji : options.emoji;
+  loadedOptions.hideLog = options.hideLog === undefined ? loadedOptions.hideLog : options.hideLog;
+  loadedOptions.separator = options.separator === undefined ? loadedOptions.separator : options.separator;
+
+  return loadedOptions;
+};
+
 /** Log an information message */
-const info = (...message: unknown[]) => {
-  const messages = '❔ ' + message.map((msg) => `${Color.BLACK}${inspect(msg, false, null)}${Color.BLACK}`);
-  print(messages);
+const info = (...message: unknown[]): void => {
+  print(
+    '❔',
+    message.map((msg) => Color.BLACK + convertToString(msg))
+  );
 };
 
 /** Log a warning message */
-const warn = (...message: unknown[]) => {
-  const messages = '⚠️ ' + message.map((msg) => `${Color.YELLOW}${inspect(msg, false, null)}${Color.YELLOW}`);
-  print(messages);
+const warn = (...message: unknown[]): void => {
+  print(
+    '⚠️',
+    message.map((msg) => Color.YELLOW + convertToString(msg))
+  );
 };
 
 /** Log an error message */
-const err = (...message: unknown[]) => {
-  const messages = '❌ ' + message.map((msg) => `${Color.RED}${inspect(msg, false, null)}${Color.RED}`);
-  print(messages);
+const err = (...message: unknown[]): void => {
+  print(
+    '❌',
+    message.map((msg) => Color.RED + convertToString(msg))
+  );
 };
 
 /** Log a success message */
-const ok = (...message: unknown[]) => {
-  const messages = '✅ ' + message.map((msg) => `${Color.GREEN}${inspect(msg, false, null)}${Color.GREEN}`);
-  print(messages);
+const ok = (...message: unknown[]): void => {
+  print(
+    '✅',
+    message.map((msg) => Color.GREEN + convertToString(msg))
+  );
 };
 
-/** Log the message to the console */
-const log = (...message: unknown[]) => {
-  const messages =
-    '' + message.map((msg) => `${Color.WHITE}${inspect(msg, false, null, true /* enable colors */)}${Color.WHITE}`);
-  print(messages);
+/** Log the message to the console, without any emoji */
+const log = (...message: unknown[]): void => {
+  print(
+    '',
+    message.map((msg) => Color.WHITE + convertToString(msg, false))
+  );
 };
 
 /** Print the message to the console */
-const print = (...message: unknown[]) => {
-  if (hideLog) {
+const print = (emoji: string, messageArray: string[]): void => {
+  if (loadedOptions.hideLog) {
     return;
   }
 
-  console.log(message.join(' ') + Color.RESET);
+  console.log((loadedOptions.emoji ? emoji + ' ' : '') + messageArray.join(loadedOptions.separator) + Color.RESET);
 };
 
-/** Refresh the environment variables inside the logger */
-const refreshEnv = () => {
-  hideLog = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod';
-
-  if (process.env.LORIKEET_LOGGER_NOT_HIDE_LOG === 'true') {
-    hideLog = false;
-  }
-};
-
-refreshEnv();
-
-export { info, warn, err, ok, log, refreshEnv };
+export { info, warn, err, ok, log, configure };

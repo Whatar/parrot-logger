@@ -1,5 +1,6 @@
 import * as logger from '../src/index';
 import { assert } from 'chai';
+import { sep } from 'path';
 import { spy } from 'sinon';
 
 describe('Logger Tests', () => {
@@ -77,21 +78,26 @@ describe('Logger Tests', () => {
     assert(consoleSpy.calledWithMatch(/.*Message 1.*Message 2/));
   });
 
-  it('should not log info message in production', () => {
-    process.env.NODE_ENV = 'production';
+  it('should log multiple messages with different types', () => {
+    logger.log('String', 123, true, { key: 'value' }, ['array']);
+    assert(consoleSpy.calledOnce);
+    assert(consoleSpy.calledWithMatch(/.*String.*123.*true.*{ key: 'value' }/));
+  });
 
-    logger.refreshEnv();
-    logger.info('This is an info message');
+  it('should not log info message', () => {
+    const logger2 = require('../src/index');
+    logger2.configure({ hideLog: true });
+
+    logger2.ok('This is an info message');
     assert(consoleSpy.notCalled);
   });
 
-  it('should log warn message in production with custom env', () => {
-    process.env.NODE_ENV = 'production';
-    process.env.LORIKEET_LOGGER_NOT_HIDE_LOG = 'true';
+  it('should log warn message with options', () => {
+    const logger2 = require('../src/index');
+    logger2.configure({ hideLog: false, emoji: false, separator: '- ' });
 
-    logger.refreshEnv();
-    logger.warn('This is a warning message');
+    logger2.info('This is a info message', 'with options');
     assert(consoleSpy.calledOnce);
-    assert(consoleSpy.calledWithMatch(/⚠️.*This is a warning message/));
+    assert(consoleSpy.calledWithMatch(/This is a info message-.*with options/));
   });
 });

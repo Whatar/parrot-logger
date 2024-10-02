@@ -15,14 +15,44 @@ Additionally, you can color your output, if you need to log important errors or 
 lorikeet-logger only logs in development environments, to keep your production logs clean.
 
 ## Installation
+
 ```bash
 npm i lorikeet-logger
 ```
+
 ## Usage
 
-By default, logging is suppressed when `NODE_ENV` is set to **production**. However, you can override this behavior by setting the environment variable `LORIKEET_LOGGER_NOT_HIDE_LOG` to 'true'. This will enable logging even in a production environment.
+### Logger customization with `configure(options: Options): Options`
+
+The `configure` function allows you to customize the logger's behavior by modifying its options. You can control whether emojis are displayed in the logs, whether logs should be hidden, and what separator to use between log messages.
+
+Parameters
+
+- `options: Options`: An object containing the following properties:
+
+  - `hideLog: boolean`: Controls whether logs are hidden. Set to true to prevent logs from being printed to the console. Default is false.
+
+  - `emoji: boolean`: Determines whether emojis are included in log messages. Default is true.
+
+  - `separator: string`: Defines the string used to separate different messages in a log. Default is a single space (' ').
+
+#### Example
+
+```javascript
+const logger = require("lorikeet-logger")
+// or
+import * as logger from "lorikeet-logger";
+
+// Customize logger behavior
+logger.configure({
+  hideLog: false,     // Show logs
+  emoji: false,       // Disable emojis
+  separator: ' | '    // Use '|' as the message separator
+});
+```
 
 ### Colors
+
 ```javascript
 const logger = require("lorikeet-logger")
 // or
