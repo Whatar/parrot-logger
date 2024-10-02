@@ -11,32 +11,38 @@ enum Color {
   RESET = '\x1b[0m' // Reset to default color
 }
 
+/** Log an information message */
 const info = (...message: unknown[]) => {
   const messages = '❔ ' + message.map((msg) => `${Color.BLACK}${inspect(msg, false, null)}${Color.BLACK}`);
   print(messages);
 };
 
+/** Log a warning message */
 const warn = (...message: unknown[]) => {
   const messages = '⚠️ ' + message.map((msg) => `${Color.YELLOW}${inspect(msg, false, null)}${Color.YELLOW}`);
   print(messages);
 };
 
+/** Log an error message */
 const err = (...message: unknown[]) => {
   const messages = '❌ ' + message.map((msg) => `${Color.RED}${inspect(msg, false, null)}${Color.RED}`);
   print(messages);
 };
 
+/** Log a success message */
 const ok = (...message: unknown[]) => {
   const messages = '✅ ' + message.map((msg) => `${Color.GREEN}${inspect(msg, false, null)}${Color.GREEN}`);
   print(messages);
 };
 
+/** Log the message to the console */
 const log = (...message: unknown[]) => {
   const messages =
     '' + message.map((msg) => `${Color.WHITE}${inspect(msg, false, null, true /* enable colors */)}${Color.WHITE}`);
   print(messages);
 };
 
+/** Print the message to the console */
 const print = (...message: unknown[]) => {
   if (hideLog) {
     return;
