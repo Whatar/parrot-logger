@@ -26,6 +26,8 @@ npm i lorikeet-logger
 
 The `configure` function allows you to customize the logger's behavior by modifying its options. You can control whether emojis are displayed in the logs, whether logs should be hidden, and what separator to use between log messages.
 
+ You only need to set the configuration in the index file or any other file that starts the app, and it will cascade down to all other imports in the module.
+
 Parameters
 
 - `options: Options`: An object containing the following properties:

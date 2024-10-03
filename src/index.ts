@@ -1,4 +1,9 @@
+// Utils
 import { convertToString } from './utils/string.utils';
+import { getOptionsFromEnv, uploadOptionsToEnv } from './utils/env.utils';
+
+// Models
+import { Options } from './model/options.model';
 
 enum Color {
   WHITE = '\x1b[37m', // White for general information
@@ -9,13 +14,6 @@ enum Color {
   RESET = '\x1b[0m' // Reset to default color
 }
 
-type Options = {
-  hideLog: boolean; // Whether to hide logs
-  emoji: boolean; // Whether to include emojis in logs
-  separator: string; // Separator between messages
-};
-
-// Default options
 let loadedOptions = {
   hideLog: false,
   emoji: true,
@@ -28,7 +26,14 @@ const configure = (options: Options): Options => {
   loadedOptions.hideLog = options.hideLog === undefined ? loadedOptions.hideLog : options.hideLog;
   loadedOptions.separator = options.separator === undefined ? loadedOptions.separator : options.separator;
 
+  uploadOptionsToEnv(loadedOptions);
+
   return loadedOptions;
+};
+
+/** Initialize the logger with the default options or the options from the environment variables */
+const initialize = () => {
+  loadedOptions = configure(getOptionsFromEnv());
 };
 
 /** Log an information message */
@@ -79,5 +84,8 @@ const print = (emoji: string, messageArray: string[]): void => {
 
   console.log((loadedOptions.emoji ? emoji + ' ' : '') + messageArray.join(loadedOptions.separator) + Color.RESET);
 };
+
+// Initialize the logger
+initialize();
 
 export { info, warn, err, ok, log, configure };
