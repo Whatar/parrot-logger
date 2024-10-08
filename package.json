@@ -49,9 +49,9 @@
   "author": "Whatar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/whatar/parrot-logger/issues"
+    "url": "https://github.com/whatar/lorikeet-logger/issues"
   },
-  "homepage": "https://github.com/whatar/parrot-logger#readme",
+  "homepage": "https://github.com/whatar/lorikeet-logger#readme",
   "dependencies": {
     "util": "^0.12.4"
   },
